@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router-dom";
-import { Home } from "@/components/home";
+import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "@/page/login/page";
 import DashboardPage from "@/page/dashboard/page";
 import ProductsPage from "@/page/products/page";
@@ -14,17 +13,17 @@ import ChatPage from "@/page/chat/page";
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/admin/dashboard" element={<DashboardPage />} />
-      <Route path="/admin/products" element={<ProductsPage />} />
-      <Route path="/admin/categories" element={<CategoriesPage />} />
-      <Route path="/admin/invoices" element={<InvoicesPage />} />
-      <Route path="/admin/settings" element={<SettingsPage />} />
-      <Route path="/admin/help" element={<HelpPage />} />
-      <Route path="/admin/account" element={<AccountPage />} />
-      <Route path="/admin/notifications" element={<NotificationsPage />} />
-      <Route path="/admin/chat" element={<ChatPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/products" element={<ProductsPage />} />
+      <Route path="/categories" element={<CategoriesPage />} />
+      <Route path="/invoices" element={<InvoicesPage />} />
+      <Route path="/settings" element={<SettingsPage />} />
+      <Route path="/help" element={<HelpPage />} />
+      <Route path="/account" element={<AccountPage />} />
+      <Route path="/notifications" element={<NotificationsPage />} />
+      <Route path="/chat" element={<ChatPage />} />
     </Routes>
   );
 }
