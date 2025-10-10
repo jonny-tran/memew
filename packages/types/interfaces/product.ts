@@ -1,5 +1,4 @@
 import { ProductStatus, ProductType } from "../enums";
-import { ProductSize } from "./product-size";
 
 export interface Product {
   ProductID: string;

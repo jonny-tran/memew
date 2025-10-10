@@ -1,5 +1,6 @@
+import { AdminMetrics } from "@/components/dashboard/admin-metrics";
 import { ChartAreaInteractive } from "@/components/dashboard/chart-area-interactive";
-import { DataTable } from "@/components/dashboard/data-table";
+import { ProductTable } from "@/components/dashboard/product-table";
 import { SectionCards } from "@/components/dashboard/section-cards";
 import { DashboardLayout } from "@/layouts/dashboard-layout";
 
@@ -12,7 +13,10 @@ export default function DashboardPage() {
       <div className="px-4 lg:px-6">
         <ChartAreaInteractive />
       </div>
-      <DataTable data={data} />
+      <div className="py-6">
+        <AdminMetrics />
+      </div>
+      <ProductTable data={data} />
     </DashboardLayout>
   );
 }

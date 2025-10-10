@@ -8,6 +8,7 @@ import {
   IconInnerShadowTop,
   IconListDetails,
   IconSettings,
+  IconMessageCircle,
 } from "@tabler/icons-react";
 
 import { NavMain } from "@/components/dashboard/nav-main";
@@ -50,15 +51,20 @@ const data = {
       url: "/admin/invoices",
       icon: IconChartBar,
     },
+    {
+      title: "Chat",
+      url: "/admin/chat",
+      icon: IconMessageCircle,
+    },
   ],
   navSecondary: [
     {
-      title: "Settings",
+      title: "Cài đặt hệ thống",
       url: "/admin/settings",
       icon: IconSettings,
     },
     {
-      title: "Get Help",
+      title: "Trợ giúp",
       url: "/admin/help",
       icon: IconHelp,
     },
