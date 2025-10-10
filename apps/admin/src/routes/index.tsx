@@ -3,7 +3,7 @@ import LoginPage from "@/page/login/page";
 import DashboardPage from "@/page/dashboard/page";
 import ProductsPage from "@/page/products/page";
 import ProductDetailPage from "@/page/products/[id]/page";
-import CategoriesPage from "@/page/categories/page";
+import ProductTypePage from "@/page/product-types/page";
 import InvoicesPage from "@/page/invoices/page";
 import SettingsPage from "@/page/settings/page";
 import HelpPage from "@/page/help/page";
@@ -19,7 +19,7 @@ export function AppRoutes() {
       <Route path="/admin/dashboard" element={<DashboardPage />} />
       <Route path="/admin/products" element={<ProductsPage />} />
       <Route path="/admin/products/:id" element={<ProductDetailPage />} />
-      <Route path="/admin/categories" element={<CategoriesPage />} />
+      <Route path="/admin/product-types" element={<ProductTypePage />} />
       <Route path="/admin/invoices" element={<InvoicesPage />} />
       <Route path="/admin/settings" element={<SettingsPage />} />
       <Route path="/admin/help" element={<HelpPage />} />

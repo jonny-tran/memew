@@ -47,7 +47,7 @@ export function DynamicBreadcrumb({ items }: DynamicBreadcrumbProps) {
         case "products":
           label = "Sản phẩm";
           break;
-        case "categories":
+        case "product-types":
           label = "Loại sản phẩm";
           break;
         case "invoices":

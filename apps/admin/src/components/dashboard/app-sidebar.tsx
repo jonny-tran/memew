@@ -42,7 +42,7 @@ const data = {
     },
     {
       title: "Loại sản phẩm",
-      url: "/admin/categories",
+      url: "/admin/product-types",
       icon: IconListDetails,
     },
     {
