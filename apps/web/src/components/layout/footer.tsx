@@ -1,0 +1,160 @@
+import Link from "next/link";
+import Image from "next/image";
+import { Facebook, Youtube, ShoppingBag, Mail, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const supportLinks = [
+    { name: "Vận chuyển & giao hàng", href: "/shipping" },
+    { name: "Đổi trả hàng", href: "/returns" },
+    { name: "Đơn hàng của bạn", href: "/orders" },
+    { name: "Tài khoản", href: "/account" },
+    { name: "FAQs", href: "/faq" },
+  ];
+
+  const aboutLinks = [{ name: "Giới Thiệu", href: "/about" }];
+
+  const policyLinks = [
+    { name: "Chính sách bảo mật", href: "/privacy" },
+    { name: "Chính sách đổi trả", href: "/return-policy" },
+  ];
+
+  const socialLinks = [
+    { name: "Facebook", href: "#", icon: Facebook },
+    { name: "YouTube", href: "#", icon: Youtube },
+    { name: "TikTok", href: "#", icon: ShoppingBag }, // Using ShoppingBag as placeholder for TikTok
+    { name: "Shop", href: "#", icon: ShoppingBag },
+  ];
+
+  return (
+    <footer className="bg-muted/50 border-t">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Hỗ trợ */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-sm">Hỗ trợ</h3>
+            <ul className="space-y-2">
+              {supportLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Về chúng tôi */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-sm">Về chúng tôi</h3>
+            <ul className="space-y-2">
+              {aboutLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Chính Sách */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-sm">Chính Sách</h3>
+            <ul className="space-y-2">
+              {policyLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Liên hệ */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-sm">Liên hệ</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <Phone className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
+                  0559001543
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
+                  Mewmemes1@gmail.com
+                </span>
+              </div>
+              <div className="flex space-x-4">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <Link
+                      key={social.name}
+                      href={social.href}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={social.name}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Logo và Newsletter */}
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <Image
+                src="/logo-memew.svg"
+                alt="MEMEW Logo"
+                width={160}
+                height={160}
+                className="w-32 h-32"
+              />
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Mew tung chiêu, triệu tim yêu! Đăng ký ngay ✨
+            </p>
+            <div className="flex space-x-2">
+              <Input
+                type="email"
+                placeholder="Enter email address..."
+                className="flex-1"
+              />
+              <Button size="sm">Đăng Ký</Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-sm text-muted-foreground">
+              © {currentYear} Memew. Tất cả quyền được bảo lưu.
+            </p>
+            <div className="text-sm text-muted-foreground">
+              Được phát triển với ❤️ tại Việt Nam
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 
 export default function Home() {
   return (
-    <div className="container mx-auto p-8 space-y-8">
+    <div className="container mx-auto px-4 py-8 space-y-8">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Chào mừng đến với Memew</h1>
         <p className="text-xl text-muted-foreground">
