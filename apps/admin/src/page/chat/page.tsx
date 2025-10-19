@@ -39,7 +39,7 @@ export default function ChatPage() {
 
   return (
     <DashboardLayout>
-      <div className="p-6 min-h-screen bg-gray-50">
+      <div className="p-6 min-h-screen">
         <Card className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-4 min-h-[600px]">
           <div className="border-r">
             <CardHeader className="px-4 py-3">
@@ -58,8 +58,8 @@ export default function ChatPage() {
                 {filtered.map((c) => (
                   <div
                     key={c.id}
-                    className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-100 ${
-                      c.id === selected ? "bg-white" : ""
+                    className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                      c.id === selected ? "bg-white dark:bg-gray-800" : ""
                     }`}
                     onClick={() => {
                       selectConversation(c.id);
@@ -82,23 +82,23 @@ export default function ChatPage() {
                         <div className="text-sm font-medium truncate">
                           {c.customerName}
                         </div>
-                        <div className="text-xs text-gray-400">
+                        <div className="text-xs text-gray-400 dark:text-gray-600">
                           {new Date(c.lastMessageAt).toLocaleTimeString()}
                         </div>
                       </div>
-                      <div className="text-xs text-gray-600 truncate mt-1">
+                      <div className="text-xs text-gray-600 dark:text-gray-400 truncate mt-1">
                         {c.lastMessagePreview}
                       </div>
                     </div>
                     {c.unreadCount > 0 && (
-                      <div className="ml-2 text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">
+                      <div className="ml-2 text-xs bg-red-500 text-white dark:text-white px-2 py-0.5 rounded-full">
                         {c.unreadCount}
                       </div>
                     )}
                   </div>
                 ))}
                 {filtered.length === 0 && (
-                  <div className="p-4 text-sm text-gray-500">
+                  <div className="p-4 text-sm text-gray-500 dark:text-gray-400">
                     Không tìm thấy cuộc trò chuyện
                   </div>
                 )}
@@ -121,13 +121,13 @@ export default function ChatPage() {
                       </AvatarFallback>
                     </Avatar>
                   ) : (
-                    <div className="w-10 h-10 bg-gray-100 rounded" />
+                    <div className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded" />
                   )}
                   <div>
                     <div className="font-medium">
                       {conv?.customerName ?? "Chọn cuộc trò chuyện"}
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       {conv
                         ? conv.online
                           ? "Đang hoạt động"
@@ -136,7 +136,7 @@ export default function ChatPage() {
                     </div>
                   </div>
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 dark:text-gray-400">
                   {conv ? `#${conv.id}` : ""}
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function ChatPage() {
                   ))}
                 </div>
               ) : (
-                <div className="h-full flex items-center justify-center text-gray-400">
+                <div className="h-full flex items-center justify-center text-gray-400 dark:text-gray-600">
                   Chọn một cuộc trò chuyện để hiển thị tin nhắn.
                 </div>
               )}
@@ -182,16 +182,18 @@ function ChatBubble({ message }: { message: Message }) {
     <div className={`flex ${isAdmin ? "justify-end" : "justify-start"}`}>
       <div
         className={`${
-          isAdmin ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-900"
+          isAdmin
+            ? "bg-blue-400 text-white"
+            : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         } max-w-[70%] px-4 py-2 rounded-lg`}
       >
         <div className="text-sm whitespace-pre-wrap">{message.text}</div>
         {message.file && (
-          <div className="text-xs text-gray-200 mt-1">
+          <div className="text-xs text-gray-200 dark:text-gray-600 mt-1">
             📎 {message.file.name}
           </div>
         )}
-        <div className="text-xs text-gray-200 mt-1 text-right">
+        <div className="text-xs text-gray-200 dark:text-gray-600 mt-1 text-right">
           {new Date(message.createdAt).toLocaleTimeString()}
         </div>
       </div>
@@ -247,13 +249,15 @@ function Composer({
       <label
         htmlFor="file-input"
         className={`text-sm px-3 py-2 border rounded cursor-pointer ${
-          disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50"
+          disabled
+            ? "opacity-50 cursor-not-allowed"
+            : "hover:bg-gray-50 dark:hover:bg-gray-800"
         }`}
       >
         📎
       </label>
       {file && (
-        <div className="text-xs text-gray-600 truncate max-w-32">
+        <div className="text-xs text-gray-600 dark:text-gray-400 truncate max-w-32">
           {file.name}
         </div>
       )}

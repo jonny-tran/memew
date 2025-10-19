@@ -151,14 +151,14 @@ export default function AccountPage() {
 
                       <div className="md:col-span-2 space-y-2">
                         <label className="block text-sm font-medium">
-                          URL ảnh đại diện
+                          Ảnh đại diện
                         </label>
-                        <Input
-                          value={form.avatarUrl || ""}
-                          onChange={(e) =>
-                            setForm({ ...form, avatarUrl: e.target.value })
+                        <Upload
+                          value={form.avatarUrl}
+                          onChange={(url: string | null) =>
+                            setForm({ ...form, avatarUrl: url })
                           }
-                          placeholder="https://example.com/avatar.jpg"
+                          maxSize={5}
                         />
                       </div>
                     </div>

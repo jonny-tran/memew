@@ -126,11 +126,11 @@ const chartData = [
 const chartConfig = {
   revenue: {
     label: "Doanh Thu",
-    color: "hsl(var(--chart-1))",
+    color: "#10b981", // emerald-500
   },
   orders: {
     label: "Đơn Hàng",
-    color: "hsl(var(--chart-2))",
+    color: "#3b82f6", // blue-500
   },
 } satisfies ChartConfig;
 
@@ -159,10 +159,12 @@ export function ChartAreaInteractive() {
   });
 
   return (
-    <Card className="@container/card">
+    <Card className="@container/card bg-gradient-to-br from-slate-50 to-slate-100 border-slate-200 dark:from-slate-900 dark:to-slate-800 dark:border-slate-700">
       <CardHeader>
-        <CardTitle>Doanh Thu & Đơn Hàng</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-slate-900 dark:text-slate-100">
+          Doanh Thu & Đơn Hàng
+        </CardTitle>
+        <CardDescription className="text-slate-600 dark:text-slate-400">
           <span className="hidden @[540px]/card:block">
             Thống kê doanh thu và đơn hàng trong 3 tháng qua
           </span>

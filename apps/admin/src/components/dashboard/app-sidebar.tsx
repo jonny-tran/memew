@@ -5,7 +5,6 @@ import {
   IconDashboard,
   IconFolder,
   IconHelp,
-  IconInnerShadowTop,
   IconListDetails,
   IconSettings,
   IconMessageCircle,
@@ -14,6 +13,8 @@ import {
 import { NavMain } from "@/components/dashboard/nav-main";
 import { NavSecondary } from "@/components/dashboard/nav-secondary";
 import { NavUser } from "@/components/dashboard/nav-user";
+import { ModeToggle } from "@/components/mode-toggle";
+import { useTheme } from "@/components/theme-provider";
 import {
   Sidebar,
   SidebarContent,
@@ -23,7 +24,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
+import logoMemew from "@packages/assets/logo-memew.svg";
+import logoMemewWhite from "@packages/assets/logo-memew-white.svg";
 const data = {
   user: {
     name: "shadcn",
@@ -72,6 +74,8 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { theme } = useTheme();
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -79,13 +83,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:!p-10 flex justify-center items-center"
             >
-              <Link to="/admin/dashboard">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Memew Admin</span>
+              <Link
+                to="/admin/dashboard"
+                className="flex justify-center items-center"
+              >
+                <img
+                  src={theme === "dark" ? logoMemewWhite : logoMemew}
+                  alt="Memew Logo"
+                  className="!size-20"
+                />
               </Link>
             </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <div className="flex justify-center items-center p-2">
+              <ModeToggle />
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
