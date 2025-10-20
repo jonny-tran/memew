@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { TrendingUp, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import ProductCard from "@/components/card/product-card";
@@ -19,7 +18,6 @@ const bestsellerProducts = [
     rating: 4.8,
     reviewCount: 1250,
     isTrending: true,
-    isFavorite: false,
   },
   {
     id: "2",
@@ -33,7 +31,6 @@ const bestsellerProducts = [
     rating: 4.9,
     reviewCount: 890,
     isTrending: true,
-    isFavorite: false,
   },
   {
     id: "3",
@@ -47,7 +44,6 @@ const bestsellerProducts = [
     rating: 4.7,
     reviewCount: 2100,
     isTrending: true,
-    isFavorite: false,
   },
   {
     id: "4",
@@ -61,7 +57,6 @@ const bestsellerProducts = [
     rating: 4.6,
     reviewCount: 756,
     isTrending: true,
-    isFavorite: false,
   },
   {
     id: "5",
@@ -75,7 +70,6 @@ const bestsellerProducts = [
     rating: 4.8,
     reviewCount: 432,
     isTrending: true,
-    isFavorite: false,
   },
   {
     id: "6",
@@ -89,19 +83,10 @@ const bestsellerProducts = [
     rating: 4.9,
     reviewCount: 1680,
     isTrending: true,
-    isFavorite: false,
   },
 ];
 
 export default function ProductBestseller() {
-  const [favorites, setFavorites] = useState<string[]>([]);
-
-  const handleFavoriteToggle = (id: string) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
-    );
-  };
-
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* Header Section */}
@@ -150,12 +135,7 @@ export default function ProductBestseller() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {bestsellerProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            {...product}
-            isFavorite={favorites.includes(product.id)}
-            onFavoriteToggle={handleFavoriteToggle}
-          />
+          <ProductCard key={product.id} {...product} />
         ))}
       </div>
     </div>

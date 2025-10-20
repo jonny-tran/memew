@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Star, Heart, Flame, ShoppingCart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/hooks/use-cart";
+import { useWishlist } from "@/hooks/use-wishlist";
 import { toast } from "sonner";
 import Image from "next/image";
 
@@ -21,9 +21,7 @@ interface ProductCardProps {
   rating: number;
   reviewCount: number;
   isTrending?: boolean;
-  isFavorite?: boolean;
   promotion?: string; // Thêm promotion text
-  onFavoriteToggle?: (id: string) => void;
   onAddToCart?: (id: string) => void; // Giữ lại để tương thích ngược
 }
 
@@ -38,18 +36,43 @@ export default function ProductCard({
   rating,
   reviewCount,
   isTrending = false,
-  isFavorite = false,
   promotion,
-  onFavoriteToggle,
   onAddToCart,
 }: ProductCardProps) {
-  const [favorite, setFavorite] = useState(isFavorite);
   const router = useRouter();
   const { addItem } = useCart();
+  const { isInWishlist, toggleItem } = useWishlist();
 
   const handleFavoriteClick = () => {
-    setFavorite(!favorite);
-    onFavoriteToggle?.(id);
+    const wishlistItem = {
+      FavoriteProductID: `fav-${id}`,
+      CustomerID: "customer-1", // Sẽ được thay thế bằng customer ID thực tế
+      ProductID: id,
+      Product: {
+        ProductID: id,
+        Name: title,
+        Images: [image],
+        Type: "PRODUCT",
+        Status: "ACTIVE",
+        Description: description,
+        CurrentPrice: currentPrice,
+        OriginalPrice: originalPrice,
+        Discount: discount,
+        Rating: rating,
+        ReviewCount: reviewCount,
+        IsTrending: isTrending,
+        Promotion: promotion,
+      },
+    };
+
+    const isCurrentlyInWishlist = isInWishlist(id);
+    toggleItem(wishlistItem);
+
+    if (isCurrentlyInWishlist) {
+      toast.success(`Đã xóa ${title} khỏi danh sách yêu thích`);
+    } else {
+      toast.success(`Đã thêm ${title} vào danh sách yêu thích`);
+    }
   };
 
   const handleAddToCart = () => {
@@ -101,7 +124,7 @@ export default function ProductCard({
       {/* Product Image Section */}
       <div className="relative bg-muted/30 p-4">
         {/* Badge Section - Trending hoặc Promotion */}
-        <div className="absolute top-3 left-3 z-10">
+        <div className="absolute left-3 z-10">
           {isTrending && (
             <Badge className="bg-primary text-primary-foreground rounded-md px-2 py-1 text-xs font-medium flex items-center gap-1">
               <Flame className="w-3 h-3" />
@@ -116,7 +139,7 @@ export default function ProductCard({
         </div>
 
         {/* Favorite Button */}
-        <div className="absolute top-3 right-3 z-10">
+        <div className="absolute right-3 z-10">
           <Button
             variant="ghost"
             size="icon"
@@ -128,7 +151,7 @@ export default function ProductCard({
           >
             <Heart
               className={`w-4 h-4 ${
-                favorite
+                isInWishlist(id)
                   ? "fill-destructive text-destructive"
                   : "text-muted-foreground"
               }`}

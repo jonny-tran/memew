@@ -13,7 +13,6 @@ type Product = {
   rating: number;
   reviewCount: number;
   isTrending?: boolean;
-  isFavorite?: boolean;
   promotion?: string;
 };
 
@@ -30,7 +29,6 @@ const products: Product[] = [
     rating: 4.8,
     reviewCount: 1240,
     isTrending: true,
-    isFavorite: false,
     promotion: "HOT",
   },
   {
@@ -45,7 +43,6 @@ const products: Product[] = [
     rating: 4.6,
     reviewCount: 856,
     isTrending: false,
-    isFavorite: true,
   },
   {
     id: "3",
@@ -59,16 +56,11 @@ const products: Product[] = [
     rating: 4.9,
     reviewCount: 2100,
     isTrending: false,
-    isFavorite: false,
     promotion: "COMBO",
   },
 ];
 
 const ProductCard2 = () => {
-  const handleFavoriteToggle = (id: string) => {
-    console.log(`Toggle favorite for product ${id}`);
-  };
-
   return (
     <section className="mx-auto max-w-7xl space-y-8 px-4 py-12 sm:px-8">
       <header className="space-y-2">
@@ -83,11 +75,7 @@ const ProductCard2 = () => {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            {...product}
-            onFavoriteToggle={handleFavoriteToggle}
-          />
+          <ProductCard key={product.id} {...product} />
         ))}
       </div>
     </section>

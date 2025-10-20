@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -21,11 +22,20 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isLoggedIn] = useState(true); // State để quản lý trạng thái đăng nhập - sẽ được sử dụng khi tích hợp authentication
+  const [searchQuery, setSearchQuery] = useState("");
   const { itemCount: cartItemCount, isLoading: cartLoading } = useCart();
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   const categories = [
     { name: "NEW", href: "/new" },
@@ -106,13 +116,16 @@ export function Header() {
 
             {/* Search Bar */}
             <div className="flex-1 max-w-2xl mx-8">
-              <div className="relative">
+              <form onSubmit={handleSearch} className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                 <Input
+                  type="text"
                   placeholder="Tìm kiếm sản phẩm..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-12 pr-4 py-3 text-lg bg-secondary border-border text-foreground placeholder-muted-foreground rounded-xl focus:ring-2 focus:ring-accent"
                 />
-              </div>
+              </form>
             </div>
 
             {/* Right Actions */}
@@ -120,10 +133,12 @@ export function Header() {
               {isLoggedIn ? (
                 <>
                   {/* Favorites */}
-                  <Button className="bg-secondary hover:bg-secondary/80 text-secondary-foreground border-border rounded-xl px-4 py-2">
-                    <Heart className="h-5 w-5 mr-2" />
-                    <span className="hidden sm:inline">Yêu thích</span>
-                  </Button>
+                  <Link href="/wishlist">
+                    <Button className="bg-secondary hover:bg-secondary/80 text-secondary-foreground border-border rounded-xl px-4 py-2 relative">
+                      <Heart className="h-5 w-5 mr-2" />
+                      <span className="hidden sm:inline">Yêu thích</span>
+                    </Button>
+                  </Link>
 
                   {/* Cart */}
                   <Link href="/cart">
@@ -224,6 +239,20 @@ export function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-primary/90 border-t border-border">
           <div className="container mx-auto px-4 py-4">
+            {/* Mobile Search */}
+            <div className="mb-4">
+              <form onSubmit={handleSearch} className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  type="text"
+                  placeholder="Tìm kiếm sản phẩm..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-4 py-2 bg-secondary border-border text-foreground placeholder-muted-foreground rounded-lg"
+                />
+              </form>
+            </div>
+
             <div className="grid grid-cols-2 gap-2">
               {categories.map((category) => (
                 <Link
