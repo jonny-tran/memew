@@ -138,11 +138,6 @@ export default function ProductDetailPage() {
     router.push(`/checkout?source=product&item=${encodedItem}`);
   };
 
-  const handleFavoriteToggle = (id: string) => {
-    // Logic toggle favorite
-    console.log("Toggle favorite:", id);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
@@ -283,8 +278,6 @@ export default function ProductDetailPage() {
                   rating={product.rating}
                   reviewCount={product.reviewCount}
                   isTrending={product.isTrending}
-                  isFavorite={product.isFavorite}
-                  onFavoriteToggle={handleFavoriteToggle}
                 />
               ))}
             </div>

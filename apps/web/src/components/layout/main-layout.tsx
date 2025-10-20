@@ -14,7 +14,7 @@ export function MainLayout({ children }: MainLayoutProps) {
       <Header />
 
       {/* Main content */}
-      <main className="flex-1 pt-[200px]">{children}</main>
+      <main className="flex-1 pt-[120px] md:pt-[200px]">{children}</main>
 
       {/* Footer */}
       <Footer />
