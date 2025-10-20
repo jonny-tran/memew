@@ -1,5 +1,7 @@
 {
   "buildCommand": "turbo run build --filter=admin",
   "outputDirectory": "apps/admin/dist",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "framework": "vite",
+  "devCommand": "turbo run dev --filter=admin"
 }
