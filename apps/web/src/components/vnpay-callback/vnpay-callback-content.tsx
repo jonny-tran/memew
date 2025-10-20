@@ -75,7 +75,7 @@ export function VNPayCallbackContent() {
   };
 
   const handleContinueShopping = () => {
-    router.push("/");
+    router.push("/products");
   };
 
   const handleViewOrder = () => {

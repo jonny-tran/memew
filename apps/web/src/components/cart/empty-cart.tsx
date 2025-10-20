@@ -20,7 +20,7 @@ export function EmptyCart() {
           </div>
 
           <div className="space-y-4">
-            <Link href="/">
+            <Link href="/products">
               <Button size="lg" className="w-full sm:w-auto">
                 Tiếp tục mua sắm
               </Button>

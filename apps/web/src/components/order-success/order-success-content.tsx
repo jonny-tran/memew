@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Package, Clock, MapPin } from "lucide-react";
+import Link from "next/link";
 
 // Dummy data cho trang order success
 const dummyOrderData = {
@@ -190,12 +191,14 @@ export function OrderSuccessContent() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button
-              onClick={handleContinueShopping}
-              className="flex-1 bg-black text-white hover:bg-gray-800"
-            >
-              Tiếp tục mua sắm
-            </Button>
+            <Link href="/products">
+              <Button
+                onClick={handleContinueShopping}
+                className="flex-1 bg-black text-white hover:bg-gray-800"
+              >
+                Tiếp tục mua sắm
+              </Button>
+            </Link>
             <Button
               onClick={handleViewOrder}
               variant="outline"

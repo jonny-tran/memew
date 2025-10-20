@@ -59,14 +59,16 @@ export function CartToast({ isVisible, onClose, productName }: CartToastProps) {
                     Xem giỏ hàng
                   </Button>
                 </Link>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onClose}
-                  className="text-xs"
-                >
-                  Tiếp tục mua sắm
-                </Button>
+                <Link href="/products">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={onClose}
+                    className="text-xs"
+                  >
+                    Tiếp tục mua sắm
+                  </Button>
+                </Link>
               </div>
             </div>
 

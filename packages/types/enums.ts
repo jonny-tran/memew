@@ -13,6 +13,9 @@ export enum ProductType {
   Sticker = "Sticker",
   Shirt = "Shirt",
   Keyring = "Keyring",
+  New = "New",
+  Cup = "Cup",
+  PhoneCase = "PhoneCase",
 }
 
 export enum ProductStatus {

@@ -75,7 +75,7 @@ export function OrderSummary({
             </Button>
           </Link>
 
-          <Link href="/">
+          <Link href="/products">
             <Button variant="outline" className="w-full">
               Tiếp tục mua sắm
             </Button>

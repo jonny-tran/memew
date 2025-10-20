@@ -17,6 +17,7 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
+import Link from "next/link";
 
 // Dummy data cho trang order detail
 const dummyOrderDetail = {
@@ -343,12 +344,14 @@ export function OrderDetailContent() {
 
                   {/* Action Buttons */}
                   <div className="space-y-2">
-                    <Button
-                      onClick={handleContinueShopping}
-                      className="w-full bg-black text-white hover:bg-gray-800"
-                    >
-                      Tiếp tục mua sắm
-                    </Button>
+                    <Link href="/products">
+                      <Button
+                        onClick={handleContinueShopping}
+                        className="w-full bg-black text-white hover:bg-gray-800"
+                      >
+                        Tiếp tục mua sắm
+                      </Button>
+                    </Link>
                   </div>
 
                   {/* Contact Support */}

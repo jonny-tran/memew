@@ -38,12 +38,12 @@ export function Header() {
   };
 
   const categories = [
-    { name: "NEW", href: "/new" },
-    { name: "ÁO THUN", href: "/ao-thun" },
-    { name: "STICKER", href: "/sticker" },
-    { name: "LY, CỐC", href: "/ly-coc" },
-    { name: "ỐP LƯNG", href: "/op-lung" },
-    { name: "MÓC KHÓA", href: "/moc-khoa" },
+    { name: "NEW", href: "/products?category=New" },
+    { name: "ÁO THUN", href: "/products?category=Shirt" },
+    { name: "STICKER", href: "/products?category=Sticker" },
+    { name: "LY, CỐC", href: "/products?category=Cup" },
+    { name: "ỐP LƯNG", href: "/products?category=PhoneCase" },
+    { name: "MÓC KHÓA", href: "/products?category=Keyring" },
   ];
 
   if (!isMounted) {
