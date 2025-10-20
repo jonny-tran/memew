@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Header } from "./header";
 import { Footer } from "./footer";
+import { ChatWidget } from "../chat/chat-widget";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -17,6 +18,9 @@ export function MainLayout({ children }: MainLayoutProps) {
 
       {/* Footer */}
       <Footer />
+
+      {/* Chat Widget - hiển thị ở mọi trang */}
+      <ChatWidget />
     </div>
   );
 }

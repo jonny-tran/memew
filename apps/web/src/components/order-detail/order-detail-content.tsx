@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  ArrowLeft,
   Package,
   Clock,
   MapPin,
@@ -17,7 +16,6 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
-import Link from "next/link";
 
 // Dummy data cho trang order detail
 const dummyOrderDetail = {
@@ -118,12 +116,8 @@ export function OrderDetailContent() {
     }
   };
 
-  const handleBackToOrders = () => {
-    router.push("/order-success");
-  };
-
   const handleContinueShopping = () => {
-    router.push("/");
+    router.push("/products");
   };
 
   return (
@@ -132,15 +126,6 @@ export function OrderDetailContent() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex items-center gap-4 mb-6">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleBackToOrders}
-              className="flex items-center gap-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Quay lại
-            </Button>
             <div>
               <h1 className="text-2xl font-bold text-gray-900">
                 Chi tiết đơn hàng
@@ -344,14 +329,12 @@ export function OrderDetailContent() {
 
                   {/* Action Buttons */}
                   <div className="space-y-2">
-                    <Link href="/products">
-                      <Button
-                        onClick={handleContinueShopping}
-                        className="w-full bg-black text-white hover:bg-gray-800"
-                      >
-                        Tiếp tục mua sắm
-                      </Button>
-                    </Link>
+                    <Button
+                      onClick={handleContinueShopping}
+                      className="w-full bg-black text-white hover:bg-gray-800"
+                    >
+                      Tiếp tục mua sắm
+                    </Button>
                   </div>
 
                   {/* Contact Support */}

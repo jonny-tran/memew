@@ -8,18 +8,16 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const supportLinks = [
-    { name: "Vận chuyển & giao hàng", href: "/shipping" },
-    { name: "Đổi trả hàng", href: "/returns" },
-    { name: "Đơn hàng của bạn", href: "/orders" },
-    { name: "Tài khoản", href: "/account" },
-    { name: "FAQs", href: "/faq" },
+    { name: "Đơn hàng của bạn", href: "/orders-history" },
+    { name: "Tài khoản", href: "/profile" },
+    { name: "FAQs", href: "/faqs" },
   ];
 
   const aboutLinks = [{ name: "Giới Thiệu", href: "/about" }];
 
   const policyLinks = [
-    { name: "Chính sách bảo mật", href: "/privacy" },
-    { name: "Chính sách đổi trả", href: "/return-policy" },
+    { name: "Chính sách bảo mật", href: "/privacy-policy" },
+    { name: "Chính sách đổi trả", href: "/refund-policy" },
   ];
 
   const socialLinks = [

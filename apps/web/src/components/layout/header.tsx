@@ -179,21 +179,11 @@ export function Header() {
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/orders" className="w-full">
+                        <Link href="/orders-history" className="w-full">
                           Đơn hàng
                         </Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Link href="/wishlist" className="w-full">
-                          Danh sách yêu thích
-                        </Link>
-                      </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <Link href="/settings" className="w-full">
-                          Cài đặt
-                        </Link>
-                      </DropdownMenuItem>
                       <DropdownMenuItem className="text-destructive">
                         Đăng xuất
                       </DropdownMenuItem>
