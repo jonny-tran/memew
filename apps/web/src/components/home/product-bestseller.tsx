@@ -102,11 +102,6 @@ export default function ProductBestseller() {
     );
   };
 
-  const handleAddToCart = (id: string) => {
-    // Xử lý thêm vào giỏ hàng
-    console.log("Thêm sản phẩm vào giỏ hàng:", id);
-  };
-
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* Header Section */}
@@ -160,7 +155,6 @@ export default function ProductBestseller() {
             {...product}
             isFavorite={favorites.includes(product.id)}
             onFavoriteToggle={handleFavoriteToggle}
-            onAddToCart={handleAddToCart}
           />
         ))}
       </div>

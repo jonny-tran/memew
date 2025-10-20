@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Star, Heart, Flame, ShoppingBag } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Star, Heart, Flame, ShoppingCart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/hooks/use-cart";
+import { toast } from "sonner";
 import Image from "next/image";
 
 interface ProductCardProps {
@@ -21,7 +24,7 @@ interface ProductCardProps {
   isFavorite?: boolean;
   promotion?: string; // Thêm promotion text
   onFavoriteToggle?: (id: string) => void;
-  onAddToCart?: (id: string) => void; // Thêm callback cho giỏ hàng
+  onAddToCart?: (id: string) => void; // Giữ lại để tương thích ngược
 }
 
 export default function ProductCard({
@@ -41,6 +44,8 @@ export default function ProductCard({
   onAddToCart,
 }: ProductCardProps) {
   const [favorite, setFavorite] = useState(isFavorite);
+  const router = useRouter();
+  const { addItem } = useCart();
 
   const handleFavoriteClick = () => {
     setFavorite(!favorite);
@@ -48,7 +53,33 @@ export default function ProductCard({
   };
 
   const handleAddToCart = () => {
-    onAddToCart?.(id);
+    // Nếu có callback từ parent, gọi nó
+    if (onAddToCart) {
+      onAddToCart(id);
+      return;
+    }
+
+    // Nếu không có callback, sử dụng cart hook trực tiếp
+    addItem({
+      ProductID: id,
+      Product: {
+        ProductID: id,
+        Name: title,
+        Images: [image],
+        Type: "PRODUCT",
+        Status: "ACTIVE",
+        Description: description,
+      },
+      UnitPrice: currentPrice,
+      Size: "M",
+      Color: "Đen",
+    });
+
+    toast.success(`Đã thêm ${title} vào giỏ hàng`);
+  };
+
+  const handleCardClick = () => {
+    router.push(`/products/${id}`);
   };
 
   const formatPrice = (price: number) => {
@@ -63,7 +94,10 @@ export default function ProductCard({
   };
 
   return (
-    <Card className="group relative overflow-hidden bg-background border shadow-sm hover:shadow-lg transition-all duration-300 rounded-lg">
+    <Card
+      className="group relative overflow-hidden bg-background border shadow-sm hover:shadow-lg transition-all duration-300 rounded-lg cursor-pointer"
+      onClick={handleCardClick}
+    >
       {/* Product Image Section */}
       <div className="relative bg-muted/30 p-4">
         {/* Badge Section - Trending hoặc Promotion */}
@@ -87,7 +121,10 @@ export default function ProductCard({
             variant="ghost"
             size="icon"
             className="w-8 h-8 rounded-full bg-background hover:bg-accent shadow-sm"
-            onClick={handleFavoriteClick}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFavoriteClick();
+            }}
           >
             <Heart
               className={`w-4 h-4 ${
@@ -114,8 +151,7 @@ export default function ProductCard({
         <div className="absolute bottom-3 left-3">
           <Badge className="bg-background/90 text-foreground rounded-md px-2 py-1 text-xs font-medium flex items-center gap-1 shadow-sm">
             <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-            {rating} | <ShoppingBag className="w-3 h-3" />{" "}
-            {formatReviewCount(reviewCount)}
+            {rating} | {formatReviewCount(reviewCount)} đánh giá
           </Badge>
         </div>
       </div>
@@ -147,8 +183,14 @@ export default function ProductCard({
           </div>
 
           {/* Add to Cart Button */}
-          <Button onClick={handleAddToCart} className="w-full mt-3">
-            <ShoppingBag className="w-4 h-4 mr-2" />
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddToCart();
+            }}
+            className="w-full mt-3"
+          >
+            <ShoppingCart className="w-4 h-4 mr-2" />
             Thêm vào giỏ hàng
           </Button>
         </div>

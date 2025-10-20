@@ -69,10 +69,6 @@ const ProductCard2 = () => {
     console.log(`Toggle favorite for product ${id}`);
   };
 
-  const handleAddToCart = (id: string) => {
-    console.log(`Add to cart product ${id}`);
-  };
-
   return (
     <section className="mx-auto max-w-7xl space-y-8 px-4 py-12 sm:px-8">
       <header className="space-y-2">
@@ -91,7 +87,6 @@ const ProductCard2 = () => {
             key={product.id}
             {...product}
             onFavoriteToggle={handleFavoriteToggle}
-            onAddToCart={handleAddToCart}
           />
         ))}
       </div>

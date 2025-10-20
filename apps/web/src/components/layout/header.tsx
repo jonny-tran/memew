@@ -14,11 +14,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ShoppingCart, Search, User, Heart } from "lucide-react";
 import Image from "next/image";
+import { CartBadge } from "@/components/cart";
+import { useCart } from "@/hooks/use-cart";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isLoggedIn] = useState(true); // State để quản lý trạng thái đăng nhập - sẽ được sử dụng khi tích hợp authentication
+  const { itemCount: cartItemCount, isLoading: cartLoading } = useCart();
 
   useEffect(() => {
     setIsMounted(true);
@@ -123,10 +126,15 @@ export function Header() {
                   </Button>
 
                   {/* Cart */}
-                  <Button className="bg-secondary hover:bg-secondary/80 text-secondary-foreground border-border rounded-xl px-4 py-2">
-                    <ShoppingCart className="h-5 w-5 mr-2" />
-                    <span className="hidden sm:inline">Giỏ hàng của bạn</span>
-                  </Button>
+                  <Link href="/cart">
+                    <Button className="bg-secondary hover:bg-secondary/80 text-secondary-foreground border-border rounded-xl px-4 py-2 relative">
+                      <ShoppingCart className="h-5 w-5 mr-2" />
+                      <span className="hidden sm:inline">Giỏ hàng của bạn</span>
+                      {isMounted && !cartLoading && (
+                        <CartBadge count={cartItemCount} />
+                      )}
+                    </Button>
+                  </Link>
 
                   {/* User Account */}
                   <DropdownMenu>
