@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { Button } from "./button";
-import { Input } from "./input";
 import { Upload as UploadIcon, X } from "lucide-react";
 
 interface UploadProps {

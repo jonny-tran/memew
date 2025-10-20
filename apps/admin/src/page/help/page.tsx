@@ -1,4 +1,3 @@
-import React from "react";
 import { DashboardLayout } from "@/layouts/dashboard-layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,8 +8,6 @@ import {
   Mail,
   Phone,
   Clock,
-  ChevronDown,
-  ChevronRight,
 } from "lucide-react";
 
 /**

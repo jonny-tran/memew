@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -440,7 +440,7 @@ const getProductTypeDisplayName = (type: ProductType): string => {
   }
 };
 
-export default function ProductsPage() {
+function ProductsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
@@ -1055,5 +1055,29 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function ProductsLoading() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Tất cả sản phẩm</h1>
+        <p className="text-muted-foreground">
+          Khám phá bộ sưu tập sản phẩm đa dạng của chúng tôi
+        </p>
+      </div>
+      <div className="flex items-center justify-center py-12">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+      </div>
+    </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsContent />
+    </Suspense>
   );
 }

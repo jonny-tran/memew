@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal, Grid3X3, List } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -125,7 +125,7 @@ const searchProducts: SearchProduct[] = [
   },
 ];
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -423,5 +423,37 @@ export default function SearchPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function SearchLoading() {
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="bg-muted/30 border-b">
+        <div className="container mx-auto px-4 py-6">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              Tìm kiếm sản phẩm
+            </h1>
+            <p className="text-muted-foreground">
+              Đang tải kết quả tìm kiếm...
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<SearchLoading />}>
+      <SearchContent />
+    </Suspense>
   );
 }

@@ -38,7 +38,7 @@ const mockSettings: Settings = {
   twoFactorAuth: false,
 };
 
-export const useSettingsStore = create<SettingsState>((set, get) => ({
+export const useSettingsStore = create<SettingsState>((set) => ({
   settings: mockSettings,
   isLoading: false,
   error: null,

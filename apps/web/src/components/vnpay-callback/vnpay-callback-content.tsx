@@ -6,13 +6,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle, Clock, AlertCircle } from "lucide-react";
 
+interface PaymentData {
+  orderId: string | null;
+  amount: number;
+  orderInfo: string | null;
+  payDate?: string | null;
+  errorCode?: string | null;
+}
+
 export function VNPayCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [paymentStatus, setPaymentStatus] = useState<
     "loading" | "success" | "failed" | "pending"
   >("loading");
-  const [paymentData, setPaymentData] = useState<any>(null);
+  const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
 
   useEffect(() => {
     // Lấy các tham số từ URL callback của VNPay

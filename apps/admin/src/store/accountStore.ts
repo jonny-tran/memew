@@ -80,7 +80,7 @@ const mockAccount: Account = {
   metaKeywords: ["shop", "sản phẩm", "sinh viên", "chất lượng", "giá rẻ"],
 };
 
-export const useAccountStore = create<AccountState>((set, get) => ({
+export const useAccountStore = create<AccountState>((set) => ({
   account: mockAccount,
   isLoading: false,
   error: null,

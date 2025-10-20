@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   UserInfoSection,
@@ -33,7 +33,7 @@ const convertToCheckoutItems = (cartItems: CartItemType[]): CartItem[] => {
   }));
 };
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { items: cartItemsFromHook, clearCart } = useCart();
@@ -182,5 +182,31 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function CheckoutLoading() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">Thanh toán</h1>
+          <p className="text-gray-600 mt-2">
+            Xem lại đơn hàng và hoàn tất mua hàng
+          </p>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<CheckoutLoading />}>
+      <CheckoutContent />
+    </Suspense>
   );
 }

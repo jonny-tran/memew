@@ -12,15 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Loader2,
-  Settings,
-  Shield,
-  Bell,
-  Database,
-  Clock,
-  Lock,
-} from "lucide-react";
+import { Loader2, Settings, Shield } from "lucide-react";
 
 /**
  * SettingsPage - quản lý cài đặt hệ thống

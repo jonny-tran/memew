@@ -1,5 +1,3 @@
-import { CartItem } from "./cart-item";
-
 export interface Cart {
   CartID: string;
   CustomerID: string;

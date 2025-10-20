@@ -1,5 +1,4 @@
 import { OrderStatus, PaymentMethod } from "../enums";
-import { OrderDetail } from "./order-detail";
 
 export interface Order {
   OrderID: string;

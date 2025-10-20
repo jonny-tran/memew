@@ -40,7 +40,7 @@ interface ChatState {
   markAsRead: (conversationId: string) => void;
 }
 
-export const useChatStore = create<ChatState>((set, get) => ({
+export const useChatStore = create<ChatState>((set) => ({
   conversations: [
     {
       id: "C-1",
