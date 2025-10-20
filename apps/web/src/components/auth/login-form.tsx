@@ -47,15 +47,20 @@ export function LoginForm({
         <Field>
           <div className="flex items-center">
             <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Quên mật khẩu?
-            </a>
           </div>
-          <Input id="password" type="password" required />
+          <Input
+            id="password"
+            type="password"
+            placeholder="Nhập mật khẩu của bạn"
+            required
+          />
         </Field>
+        <Link
+          href="/forgot-password"
+          className="ml-auto text-sm underline-offset-4 hover:underline"
+        >
+          Quên mật khẩu?
+        </Link>
         <Field>
           <Button type="submit">Đăng nhập</Button>
         </Field>

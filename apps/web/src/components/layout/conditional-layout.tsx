@@ -11,7 +11,7 @@ export function ConditionalLayout({ children }: ConditionalLayoutProps) {
   const pathname = usePathname();
 
   // Các trang không sử dụng MainLayout
-  const noLayoutPages = ["/login", "/signup"];
+  const noLayoutPages = ["/login", "/signup", "/forgot-password"];
 
   // Nếu là trang login hoặc signup, render children trực tiếp
   if (noLayoutPages.includes(pathname)) {
