@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Youtube, ShoppingBag, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -20,12 +20,10 @@ export function Footer() {
     { name: "Chính sách đổi trả", href: "/refund-policy" },
   ];
 
-  const socialLinks = [
-    { name: "Facebook", href: "#", icon: Facebook },
-    { name: "YouTube", href: "#", icon: Youtube },
-    { name: "TikTok", href: "#", icon: ShoppingBag }, // Using ShoppingBag as placeholder for TikTok
-    { name: "Shop", href: "#", icon: ShoppingBag },
-  ];
+  const shopeeLink = {
+    name: "Shopee",
+    href: "https://shopee.vn/memewstore",
+  };
 
   return (
     <footer className="bg-muted/50 border-t">
@@ -99,19 +97,21 @@ export function Footer() {
                 </span>
               </div>
               <div className="flex space-x-4">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <Link
-                      key={social.name}
-                      href={social.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                      aria-label={social.name}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </Link>
-                  );
-                })}
+                <Link
+                  href={shopeeLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={shopeeLink.name}
+                >
+                  <Image
+                    src="/shopee-seeklogo.svg"
+                    alt="Shopee"
+                    width={120}
+                    height={120}
+                    className="h-30 w-30"
+                  />
+                </Link>
               </div>
             </div>
           </div>

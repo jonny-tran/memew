@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Memew",
   description: "E-commerce platform for memes mew cat",
+  icons: {
+    icon: "/logo-memew-white.svg",
+    shortcut: "/logo-memew-white.svg",
+    apple: "/logo-memew-white.svg",
+  },
 };
 
 export default function RootLayout({

@@ -1,135 +1,209 @@
-# Turborepo starter
+# 🐱 Memew - Nền tảng thương mại điện tử meme mèo
 
-This Turborepo starter is maintained by the Turborepo core team.
+Memew là một nền tảng thương mại điện tử chuyên về các sản phẩm meme mèo, được xây dựng với kiến trúc monorepo hiện đại sử dụng Turborepo. Dự án bao gồm ứng dụng web cho khách hàng và ứng dụng admin để quản lý cửa hàng.
 
-## Using this example
+## ✨ Giới thiệu
 
-Run the following command:
+Memew được tạo ra bởi một nhóm bạn yêu mèo và nghiện meme, với mục tiêu đưa những chiếc meme mèo huyền thoại bước ra đời thật - thành áo, ly, móc khóa, sticker, ốp lưng và khiến chúng trở nên đình đám. Chúng tôi cam kết mang đến những sản phẩm chất lượng cao với giá cả hợp lý.
 
-```sh
-npx create-turbo@latest
+## 🏗️ Kiến trúc dự án
+
+Dự án sử dụng kiến trúc monorepo với Turborepo, bao gồm:
+
+### Ứng dụng (Apps)
+
+- **`web`**: Ứng dụng Next.js cho khách hàng
+  - Trang chủ với sản phẩm nổi bật
+  - Danh mục sản phẩm và tìm kiếm
+  - Giỏ hàng và thanh toán
+  - Quản lý đơn hàng và lịch sử mua hàng
+  - Hệ thống yêu thích sản phẩm
+  - Chat hỗ trợ khách hàng
+  - Trang thông tin và hỗ trợ
+
+- **`admin`**: Ứng dụng React + Vite cho quản trị viên
+  - Dashboard với thống kê và biểu đồ
+  - Quản lý sản phẩm và danh mục
+  - Quản lý đơn hàng và khách hàng
+  - Cài đặt cửa hàng và tài khoản
+  - Hệ thống thông báo
+
+### Gói dùng chung (Packages)
+
+- **`@repo/types`**: Định nghĩa TypeScript cho toàn bộ dự án
+- **`@repo/eslint-config`**: Cấu hình ESLint
+- **`@repo/typescript-config`**: Cấu hình TypeScript
+- **`@repo/assets`**: Tài nguyên dùng chung (logo, hình ảnh)
+
+## 🚀 Công nghệ sử dụng
+
+### Frontend
+
+- **Next.js 15** với Turbopack cho ứng dụng web
+- **React 19** với Vite cho ứng dụng admin
+- **TypeScript** cho type safety
+- **Tailwind CSS** cho styling
+- **Radix UI** cho components
+- **React Hook Form** + **Zod** cho form validation
+- **Zustand** cho state management
+
+### Development Tools
+
+- **Turborepo** cho monorepo management
+- **ESLint** + **Prettier** cho code quality
+- **Lucide React** cho icons
+
+## 📦 Cài đặt và chạy dự án
+
+### Yêu cầu hệ thống
+
+- Node.js >= 18
+- npm >= 11.6.0
+
+### Cài đặt dependencies
+
+```bash
+# Cài đặt dependencies cho toàn bộ dự án
+npm install
 ```
 
-## What's inside?
+### Chạy development
 
-This Turborepo includes the following packages/apps:
+```bash
+# Chạy tất cả ứng dụng
+npm run dev
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+# Hoặc sử dụng turbo trực tiếp
 npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Chạy ứng dụng cụ thể
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+```bash
+# Chạy ứng dụng web (khách hàng)
 npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+
+# Chạy ứng dụng admin
+npx turbo dev --filter=admin
 ```
 
-### Remote Caching
+### Build dự án
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+```bash
+# Build tất cả ứng dụng
+npm run build
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Build ứng dụng cụ thể
+npx turbo build --filter=web
+npx turbo build --filter=admin
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Linting và Formatting
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```bash
+# Chạy linting
+npm run lint
+
+# Format code
+npm run format
+
+# Kiểm tra types
+npm run check-types
+```
+
+## 📁 Cấu trúc thư mục
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+memew/
+├── apps/
+│   ├── web/                 # Ứng dụng Next.js cho khách hàng
+│   │   ├── src/
+│   │   │   ├── app/         # App Router pages
+│   │   │   ├── components/  # React components
+│   │   │   ├── hooks/       # Custom hooks
+│   │   │   └── lib/         # Utilities
+│   │   └── package.json
+│   └── admin/               # Ứng dụng React + Vite cho admin
+│       ├── src/
+│       │   ├── components/  # React components
+│       │   ├── contexts/    # React contexts
+│       │   ├── hooks/       # Custom hooks
+│       │   ├── layouts/     # Layout components
+│       │   ├── page/        # Pages
+│       │   ├── routes/      # Routing
+│       │   └── store/       # Zustand stores
+│       └── package.json
+├── packages/
+│   ├── types/               # TypeScript type definitions
+│   ├── eslint-config/       # ESLint configurations
+│   ├── typescript-config/   # TypeScript configurations
+│   └── assets/              # Shared assets
+├── turbo.json               # Turborepo configuration
+└── package.json             # Root package.json
 ```
 
-## Useful Links
+## 🎯 Tính năng chính
 
-Learn more about the power of Turborepo:
+### Cho khách hàng (Web App)
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- 🛍️ **Mua sắm**: Duyệt và tìm kiếm sản phẩm meme mèo
+- 🛒 **Giỏ hàng**: Thêm/xóa sản phẩm, tính toán tổng tiền
+- 💳 **Thanh toán**: Tích hợp VNPay cho thanh toán online
+- 📦 **Đơn hàng**: Theo dõi trạng thái đơn hàng
+- ❤️ **Yêu thích**: Lưu sản phẩm yêu thích
+- 💬 **Chat**: Hỗ trợ khách hàng trực tuyến
+- 📱 **Responsive**: Tối ưu cho mọi thiết bị
+
+### Cho quản trị viên (Admin App)
+
+- 📊 **Dashboard**: Thống kê doanh thu, đơn hàng, sản phẩm
+- 📦 **Quản lý sản phẩm**: CRUD sản phẩm, quản lý hình ảnh
+- 📋 **Quản lý đơn hàng**: Xem và cập nhật trạng thái đơn hàng
+- 👥 **Quản lý khách hàng**: Thông tin và lịch sử mua hàng
+- ⚙️ **Cài đặt**: Cấu hình thông tin cửa hàng
+- 🔔 **Thông báo**: Hệ thống thông báo real-time
+
+## 🛠️ Scripts có sẵn
+
+```bash
+# Development
+npm run dev              # Chạy tất cả ứng dụng
+npm run dev --filter=web # Chạy chỉ ứng dụng web
+
+# Build
+npm run build            # Build tất cả ứng dụng
+npm run build --filter=admin # Build chỉ ứng dụng admin
+
+# Code Quality
+npm run lint             # Chạy ESLint
+npm run format           # Format code với Prettier
+npm run check-types      # Kiểm tra TypeScript types
+```
+
+## 🤝 Đóng góp
+
+1. Fork dự án
+2. Tạo feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Mở Pull Request
+
+## 📄 License
+
+Dự án này được phân phối dưới giấy phép MIT. Xem file `LICENSE` để biết thêm thông tin.
+
+## 👨‍💻 Tác giả
+
+**Jonny Tran**
+
+- Email: jonnytran.working@gmail.com
+- GitHub: [@jonny-tran](https://github.com/jonny-tran)
+- Phone: 0869503259
+
+## 🔗 Liên kết hữu ích
+
+- [Turborepo Documentation](https://turborepo.com/docs)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Radix UI](https://www.radix-ui.com)
